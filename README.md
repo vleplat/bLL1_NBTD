@@ -8,7 +8,7 @@ This MATLAB software reproduces the results from the following paper:
 
 ```
 @unpublished{prevost:hal-03831661,
-  TITLE = {{NONNEGATIVE BLOCK-TERM DECOMPOSITION WITH THE $\beta$-DIVERGENCE: JOINT DATA FUSION AND BLIND SPECTRAL UNMIXING}},
+  TITLE = {{NONNEGATIVE BLOCK-TERM DECOMPOSITION WITH THE BETA-DIVERGENCE: JOINT DATA FUSION AND BLIND SPECTRAL UNMIXING}},
   AUTHOR = {Pr{\'e}vost, Cl{\'e}mence and Leplat, Valentin},
   URL = {https://hal.archives-ouvertes.fr/hal-03831661},
   NOTE = {working paper or preprint},
