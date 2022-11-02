@@ -4,6 +4,8 @@ This repository contains the software for joint HSR and unmixing using LL1 decom
 Copyright (c) 2022 Clemence Prevost, Valentin Leplat <br>
 Contact: ```clemence.prevost@univ-lille.fr```
 
+[Go to the project page](https://github.com/cprevost4/bLL1_NBTD)
+
 This MATLAB software reproduces the results from the following paper:
 
 ```
