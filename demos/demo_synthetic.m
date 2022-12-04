@@ -77,7 +77,6 @@ for l = 1:nTrials
     end
 
     P3 = max(0,P3); P1 = max(0,P1); P2 = max(0,P2);
-    opts.lambda = options.lambda;
     
     %% Proposed
 
@@ -92,7 +91,7 @@ for l = 1:nTrials
     elseif noise_type == 2
         options.beta = 3/5;
     else
-        options.beta = 1/4;
+        options.beta = 1/4; %1/4
     end
 
     options.kappa = 1e-10;
@@ -108,7 +107,7 @@ for l = 1:nTrials
     L = [3 3 6 6];
     for r=1:R
         X0 = reshape(S0(:,r),[size(Z,1) size(Z,2)]);
-        X0(X0<0) = 0;
+        X0(X0<0) = eps;
         Ainit = rand(size(Y_2,1),L(r));
         Binit = rand(size(Y_2,2),L(r));
         [A0{r},B0{r},cost] = mu_nmf(X0,Ainit,Binit,options);
@@ -119,6 +118,7 @@ for l = 1:nTrials
 
     options.kappa = 1e-7;
     options.nIter = 1000; options.verbose = 1;
+    options.lambda = 1;
 
     tic;
     [A,B,C,cost] = MU_beta_LL1_1L(Y_1,Y_2,A00,B00,C0,L,P1,P2,P3,options);
@@ -128,6 +128,7 @@ for l = 1:nTrials
     Zhat = pw_vecL(A,B,R,L)*C'; Zhat = reshape(Zhat,size(Z));
 
     metrics = QualityIndices(Zhat,Z,d1);
+
     table_proposed = [transpose(struct2cell(metrics)) time];
     
     all_proposed(:,:,l) = cell2mat(table_proposed);

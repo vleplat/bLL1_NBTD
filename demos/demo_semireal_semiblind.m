@@ -72,18 +72,16 @@ if noise_type == 1 || noise_type == 2
     Y_2 = max(0,X_2+epsi2);
 
 elseif noise_type == 3
-    opts.lambda = 1;
     epsi1 = gamrnd(a,b,size(X_1));
     epsi2 = gamrnd(a,b,size(X_2));
     Y_1 = max(0,X_1.*epsi1);
     Y_2 = max(0,X_2.*epsi2);
+    opts.lambda = 1;
 else
     warning('wrong choice for the noise statistics')
 end
 
 P3 = max(0,P3); P1 = max(0,P1); P2 = max(0,P2);
-
-options.lambda = opts.lambda;
 
 %%
 
@@ -120,7 +118,7 @@ end
 
 for r=1:R
     X0 = reshape(S0(:,r),[size(Z,1) size(Z,2)]);
-    X0(X0<0) = 0;
+    X0(X0<0) = 1e-25;
     Ainit = rand(size(Y_2,1),L(r));
     Binit = rand(size(Y_2,2),L(r));
     [A0{r},B0{r},cost] = mu_nmf(X0,Ainit,Binit,options);
@@ -159,6 +157,7 @@ end
 options.kappa = 1e-10;
 options.nIter = 1000;
 options.verbose = 1;
+options.lambda = 1;
 
 tic;
 [A,B,C,P1_est,P2_est,cost] = MU_beta_LL1_2L(Y_1,Y_2,A00,B00,C0,L,P10,P20,P3,options);

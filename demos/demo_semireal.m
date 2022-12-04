@@ -72,7 +72,6 @@ for l=1:nTrials
         Y_2 = max(0,X_2+epsi2);
 
     elseif noise_type == 3
-        options.lambda = 1;
         epsi1 = gamrnd(a,b,size(X_1));
         epsi2 = gamrnd(a,b,size(X_2));
         Y_1 = max(0,X_1.*epsi1);
@@ -83,7 +82,7 @@ for l=1:nTrials
     end
 
     P3 = max(0,P3); P1 = max(0,P1); P2 = max(0,P2);
-    opts.lambda = options.lambda;
+    %opts.lambda = options.lambda;
     
     %% Proposed
 
@@ -114,7 +113,7 @@ for l=1:nTrials
     L = [24 24 24 24 ];
     for r=1:R
         X0 = reshape(S0(:,r),[size(Z,1) size(Z,2)]);
-        X0(X0<0) = 0;
+        X0(X0<0) = 1e-25;
         Ainit = rand(size(Y_2,1),L(r));
         Binit = rand(size(Y_2,2),L(r));
         [A0{r},B0{r},cost] = mu_nmf(X0,Ainit,Binit,options);
@@ -125,6 +124,7 @@ for l=1:nTrials
 
     options.kappa = 1e-7;
     options.nIter = 1000; options.verbose = 1;
+    options.lambda = 1;
 
     tic;
     [A,B,C,cost] = MU_beta_LL1_1L(Y_1,Y_2,A00,B00,C0,L,P1,P2,P3,options);

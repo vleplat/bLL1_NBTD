@@ -103,7 +103,7 @@ S0 = tens2mat(Y_2,[],3)/C0_tilde';
 if noise_type == 1 %0 = IS, 1 = KL, 2 = Euclidean 
     options.beta = 3/2;
 elseif noise_type == 2
-    options.beta = 1; %3/5
+    options.beta = 3/5; %3/5
 else
     options.beta = 1/4;
 end
@@ -121,7 +121,7 @@ end
 L = [24 24 24 24];
 for r=1:R
     X0 = reshape(S0(:,r),[size(Z,1) size(Z,2)]);
-    X0(X0<0) = 0;
+    X0(X0<0) = 1e-25;
     Ainit = rand(size(Y_2,1),L(r));
     Binit = rand(size(Y_2,2),L(r));
     [A0{r},B0{r},cost] = mu_nmf(X0,Ainit,Binit,options);

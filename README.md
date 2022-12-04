@@ -46,6 +46,11 @@ Additionnally, you will need:
 - The HSMS data fusion toolbox: https://openremotesensing.net/knowledgebase/hyperspectral-and-multispectral-data-fusion/
 - The tensor HSR toolbox: https://drive.google.com/file/d/1dwLwwNTseMGIGhxS432BC3PREkJSMlo7/view?usp=share_link
 
+Tips:
+- Create a subdirectory "libraries",
+- place the libraries "Tensorlab 3.0", "HSMS data fusion toolbox" and "tensor HSR toolbox" within,
+- launch script "add_path_to_libraries.m".
+
 
 ## Demo file
  
