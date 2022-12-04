@@ -2,7 +2,7 @@
 This repository contains the software for joint HSR and unmixing using LL1 decomposition.
 
 Copyright (c) 2022 Clemence Prevost, Valentin Leplat <br>
-Contact: ```clemence.prevost@univ-lille.fr```
+Contact: ```clemence.prevost@univ-lille.fr``` or ```v.leplat@skoltech.ru```
 
 [Go to the project page](https://github.com/cprevost4/bLL1_NBTD)
 
