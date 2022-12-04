@@ -26,8 +26,7 @@ noise_type = input(prompt);
 
 
 for l=1:nTrials
-    
-    l
+   
     
     %% Add noise
 

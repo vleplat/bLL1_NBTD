@@ -103,7 +103,7 @@ S0 = tens2mat(Y_2,[],3)/C0_tilde';
 if noise_type == 1 %0 = IS, 1 = KL, 2 = Euclidean 
     options.beta = 3/2;
 elseif noise_type == 2
-    options.beta = 3/5;
+    options.beta = 1; %3/5
 else
     options.beta = 1/4;
 end
