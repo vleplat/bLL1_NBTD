@@ -24,31 +24,34 @@ while i<options.nIter && err(i)>options.kappa
 % Update for A
 H = pw_kronL(C,P2*B,R,ones(1,R),L)'; 
 S = pw_kronL(P3*C,B,R,ones(1,R),L)';
-
-num = P1'*(((P1*A*H).^(options.beta-2)).*H1)*H' ...
-    + options.lambda*(((A*S).^(options.beta-2)).*M1)*S';
-denum = P1'*((P1*A*H).^(options.beta-1))*H' ...
-    + options.lambda*((A*S).^(options.beta-1))*S';
+prod1 = P1*A*H;
+prod2 = A*S;
+num = P1'*(((prod1).^(options.beta-2)).*H1)*H' ...
+    + options.lambda*(((prod2).^(options.beta-2)).*M1)*S';
+denum = P1'*((prod1).^(options.beta-1))*H' ...
+    + options.lambda*((prod2).^(options.beta-1))*S';
 A = A.*((num./denum).^(options.gamma));
 A = max(A,eps);
 
 % Update for B
 H = pw_kronL(C,P1*A,R,ones(1,R),L)'; S = pw_kronL(P3*C,A,R,ones(1,R),L)';
-
-num = P2'*(((P2*B*H).^(options.beta-2)).*H2)*H' ...
-    + options.lambda*(((B*S).^(options.beta-2)).*M2)*S';
-denum = P2'*((P2*B*H).^(options.beta-1))*H' ...
-    + options.lambda*((B*S).^(options.beta-1))*S';
+prod1 = P2*B*H;
+prod2 = B*S;
+num = P2'*(((prod1).^(options.beta-2)).*H2)*H' ...
+    + options.lambda*(((prod2).^(options.beta-2)).*M2)*S';
+denum = P2'*((prod1).^(options.beta-1))*H' ...
+    + options.lambda*((prod2).^(options.beta-1))*S';
 B = B.*((num./denum).^(options.gamma));
 B = max(B,eps);
 
 % Update for C
 H = pw_vecL(A,B,R,L)'; S = pw_vecL(P1*A,P2*B,R,L)';
-
-num = options.lambda*P3'*(((P3*C*H).^(options.beta-2)).*M3)*H' ...
-    + (((C*S).^(options.beta-2)).*H3)*S';
-denum = options.lambda*P3'*((P3*C*H).^(options.beta-1))*H' ...
-    + ((C*S).^(options.beta-1))*S';
+prod1 = P3*C*H;
+prod2 = C*S;
+num = options.lambda*P3'*(((prod1).^(options.beta-2)).*M3)*H' ...
+    + (((prod2).^(options.beta-2)).*H3)*S';
+denum = options.lambda*P3'*((prod1).^(options.beta-1))*H' ...
+    + ((prod2).^(options.beta-1))*S';
 C = C.*((num./denum).^(options.gamma)); 
 C = max(C,eps);
 

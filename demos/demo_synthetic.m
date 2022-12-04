@@ -120,9 +120,18 @@ for l = 1:nTrials
     options.nIter = 1000; options.verbose = 1;
     options.lambda = 1;
 
-    tic;
-    [A,B,C,cost] = MU_beta_LL1_1L(Y_1,Y_2,A00,B00,C0,L,P1,P2,P3,options);
-    time = toc;
+    prompt = "What kind of processing unit ? 1:cpu, 2: gpu.";
+    unit_type = input(prompt);
+    if unit_type == 1
+        tic;
+        [A,B,C,cost] = MU_beta_LL1_1L(Y_1,Y_2,A00,B00,C0,L,P1,P2,P3,options);
+        time = toc;
+    elseif unit_type == 2
+        tic;
+        [A,B,C,cost] = MU_beta_LL1_1L_gpu(Y_1,Y_2,A00,B00,C0,L,P1,P2,P3,options);
+        time = toc;
+    end
+
 
     S = pw_vecL(A,B,R,L);
     Zhat = pw_vecL(A,B,R,L)*C'; Zhat = reshape(Zhat,size(Z));
