@@ -32,7 +32,9 @@ for l = 1:nTrials
     %-- Gaussian and Poisson noise
     options.SNR_Y1 = 30; %dB 
     options.SNR_Y2 = 30; %dB
-
+    %-- For bench
+    sigma_h = 10^(-options.SNR_Y1/10); sigma_m = 10^(-options.SNR_Y2/10); 
+    opts.lambda = (sigma_h^2)./(sigma_m^2);
 
     if noise_type == 1 || noise_type == 2
         if noise_type == 1 
@@ -50,8 +52,6 @@ for l = 1:nTrials
         Y_1 = max(0,X_1+epsi1);
 
         if noise_type == 1 
-            sigma_h = 10^(-options.SNR_Y1/10); sigma_m = 10^(-options.SNR_Y2/10); 
-            options.lambda = (sigma_h^2)./(sigma_m^2);
             % Gaussian noise - Y_2
             Ngaus = randn(size(X_2));
             Noise = Ngaus/norm(Ngaus(:),'fro');
@@ -66,7 +66,6 @@ for l = 1:nTrials
         Y_2 = max(0,X_2+epsi2);
 
     elseif noise_type == 3
-        opts.lambda = 1;
         epsi1 = gamrnd(a,b,size(X_1));
         epsi2 = gamrnd(a,b,size(X_2));
         Y_1 = max(0,X_1.*epsi1);
@@ -77,6 +76,7 @@ for l = 1:nTrials
     end
 
     P3 = max(0,P3); P1 = max(0,P1); P2 = max(0,P2);
+    
     
     %% Proposed
 

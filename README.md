@@ -43,7 +43,9 @@ In order to run the demos, you will need to add to your MATLAB path:
 - Tensorlab 3.0: https://www.tensorlab.net
 
 Additionnally, you will need:
-- The HSMS data fusion toolbox: https://openremotesensing.net/knowledgebase/hyperspectral-and-multispectral-data-fusion/
+- The HSMS data fusion toolbox: 
+  either here:  http://bitly.ws/xt2b
+  or here    :  https://openremotesensing.net/knowledgebase/hyperspectral-and-multispectral-data-fusion/ 
 - The tensor HSR toolbox: https://drive.google.com/file/d/1dwLwwNTseMGIGhxS432BC3PREkJSMlo7/view?usp=share_link
 
 Tips:
