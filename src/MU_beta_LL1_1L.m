@@ -5,6 +5,7 @@ function [A,B,C,cost] = MU_beta_LL1_1L(Y_1,Y_2,A0,B0,C0,L,P1,P2,P3,options)
 A = A0; B = B0; C = C0;
 R = size(C0,2);
 cost(1) = 1e10; err = Inf;
+P = {P1 P2 P3};
 
 H1 = tens2mat(Y_1,1,[]); M1 = tens2mat(Y_2,1,[]);
 H2 = tens2mat(Y_1,2,[]); M2 = tens2mat(Y_2,2,[]);
@@ -59,7 +60,7 @@ for r=1:R
     C(:,r) = C(:,r)/norm(C(:,r));
 end
 
-P = {P1 P2 P3};
+
 cost(i) = objfun(Y_1,Y_2,options.lambda,A,B,C,P,R,L,options.beta);
 err(i) = (cost(i-1) - cost(i))/cost(i-1);
 

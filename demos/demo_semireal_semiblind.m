@@ -79,6 +79,7 @@ elseif noise_type == 3
     opts.lambda = 1;
 else
     warning('wrong choice for the noise statistics')
+    return;
 end
 
 P3 = max(0,P3); P1 = max(0,P1); P2 = max(0,P2);

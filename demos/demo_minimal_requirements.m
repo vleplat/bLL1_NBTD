@@ -89,7 +89,7 @@ elseif noise_type == 3
     Y_2 = max(0,X_2.*epsi2);
 else
     warning('wrong choice for the noise statistics')
-    quit
+    return;
 end
 
 P3 = max(0,P3); P1 = max(0,P1); P2 = max(0,P2);
@@ -150,6 +150,9 @@ elseif unit_type == 2
     tic;
     [A,B,C,cost] = MU_beta_LL1_1L_gpu(Y_1,Y_2,A00,B00,C0,L,P1,P2,P3,options);
     toc
+else
+    warning('wrong choice for pocessing unit')
+    return;
 end
 
 %% Results for fusion
